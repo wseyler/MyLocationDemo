@@ -13,6 +13,8 @@
 		B4EB30DE1FEDFC8D006BDF93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4EB30DD1FEDFC8D006BDF93 /* Assets.xcassets */; };
 		B4EB30E11FEDFC8D006BDF93 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4EB30DF1FEDFC8D006BDF93 /* LaunchScreen.storyboard */; };
 		B4EB30EC1FEDFC8D006BDF93 /* MyLocationDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EB30EB1FEDFC8D006BDF93 /* MyLocationDemoTests.swift */; };
+		B4EB30F81FEE0393006BDF93 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4EB30F71FEE0393006BDF93 /* CoreLocation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		B4EB30FA1FEEEE22006BDF93 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4EB30F91FEEEE22006BDF93 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		B4EB30E71FEDFC8D006BDF93 /* MyLocationDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyLocationDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4EB30EB1FEDFC8D006BDF93 /* MyLocationDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLocationDemoTests.swift; sourceTree = "<group>"; };
 		B4EB30ED1FEDFC8D006BDF93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B4EB30F71FEE0393006BDF93 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B4EB30F91FEEEE22006BDF93 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4EB30F81FEE0393006BDF93 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,9 +64,11 @@
 		B4EB30CA1FEDFC8D006BDF93 = {
 			isa = PBXGroup;
 			children = (
+				B4EB30F91FEEEE22006BDF93 /* Default-568h@2x.png */,
 				B4EB30D51FEDFC8D006BDF93 /* MyLocationDemo */,
 				B4EB30EA1FEDFC8D006BDF93 /* MyLocationDemoTests */,
 				B4EB30D41FEDFC8D006BDF93 /* Products */,
+				B4EB30F61FEE0393006BDF93 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,6 +101,14 @@
 				B4EB30ED1FEDFC8D006BDF93 /* Info.plist */,
 			);
 			path = MyLocationDemoTests;
+			sourceTree = "<group>";
+		};
+		B4EB30F61FEE0393006BDF93 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B4EB30F71FEE0393006BDF93 /* CoreLocation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,6 +195,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4EB30E11FEDFC8D006BDF93 /* LaunchScreen.storyboard in Resources */,
+				B4EB30FA1FEEEE22006BDF93 /* Default-568h@2x.png in Resources */,
 				B4EB30DE1FEDFC8D006BDF93 /* Assets.xcassets in Resources */,
 				B4EB30DC1FEDFC8D006BDF93 /* Main.storyboard in Resources */,
 			);
