@@ -10,15 +10,10 @@ import UIKit
 import CoreLocation
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
-    struct ALocation {
-        var lat :Double
-        var long :Double
-        
-        func toDictionary() -> [String:Any] {
-            return ["lat":self.lat, "long":self.long]
-        }
-    }
     let locationManager = CLLocationManager()
+    let restUrl = URL(string:"http://localhost:3000/locations.json")
+    var priorLat = 0.0
+    var priorLon = 0.0
     
     // MARK: Properties
     
@@ -42,7 +37,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    // CLLocationManagerDelegate
+    // ---------------------------- CLLocationManagerDelegate --------------------------------
     public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("didFailWithError: \(error)");
         let errorAlert = UIAlertController(title:"Error", message:error.localizedDescription, preferredStyle:UIAlertControllerStyle.alert)
@@ -50,18 +45,43 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
 
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("didUpdateLocations: \(locations)")
         for location in locations {
-            longitudeValue.text = "\(location.coordinate.longitude)"
-            latitudeLabel.text = "\(location.coordinate.latitude)"
+            let currentLat = location.coordinate.latitude
+            let currentLon =  location.coordinate.longitude
             
-            let aLocation = ALocation(lat:location.coordinate.latitude, long:location.coordinate.longitude)
-            let jsonData  = try? JSONSerialization.data(withJSONObject: aLocation.toDictionary(), options:[])
-            if let JSONString = String(data: jsonData!, encoding: String.Encoding.utf8) {
-                print(JSONString)
+            if (currentLat != priorLat || currentLon != priorLon) { // Don't do anything if we haven't changed locations
+                let parameters = [
+                    "location" : [
+                        "lat" : currentLat,
+                        "lon" : currentLon
+                    ]
+                ]
+                
+                let jsonData  = try? JSONSerialization.data(withJSONObject: parameters, options:[])
+                var request = URLRequest(url:restUrl!)
+                request.httpMethod = "POST"
+                request.httpBody = jsonData
+                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                request.setValue("\(jsonData!.count)", forHTTPHeaderField: "Content-Length")
+                let session = URLSession.shared
+                session.dataTask(with: request) { data, rsp, err in
+                    if let data = data {
+                        do {
+                            let json = try JSONSerialization.jsonObject(with: data, options: [])
+                            print(json)
+                        } catch {
+                            print(error)
+                        }
+                    }
+                    if let rsp = rsp {
+                        print(rsp)
+                    }
+                    if let error = err {
+                        print(error.localizedDescription)
+                    }
+                }.resume()
             }
         }
     }
-    
 }
 

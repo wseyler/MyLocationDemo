@@ -28,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B4427D361FF84F3D0016B5A7 /* Navarre.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Navarre.gpx; sourceTree = "<group>"; };
 		B4EB30D31FEDFC8D006BDF93 /* MyLocationDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLocationDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4EB30D61FEDFC8D006BDF93 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4EB30D81FEDFC8D006BDF93 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +91,7 @@
 				B4EB30DD1FEDFC8D006BDF93 /* Assets.xcassets */,
 				B4EB30DF1FEDFC8D006BDF93 /* LaunchScreen.storyboard */,
 				B4EB30E21FEDFC8D006BDF93 /* Info.plist */,
+				B4427D361FF84F3D0016B5A7 /* Navarre.gpx */,
 			);
 			path = MyLocationDemo;
 			sourceTree = "<group>";
