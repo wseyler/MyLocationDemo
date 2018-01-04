@@ -54,7 +54,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         for location in locations {
             let currentLat = location.coordinate.latitude
             let currentLon =  location.coordinate.longitude
-            
+            latitudeLabel.text = "\(currentLat)"
+            longitudeValue.text = "\(currentLon)"
             if (currentLat != priorLat || currentLon != priorLon) { // Don't do anything if we haven't changed locations
                 let parameters : Dictionary<String, Double> = [
                     "latitude" : currentLat,
