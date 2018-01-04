@@ -9,9 +9,15 @@
 import UIKit
 import CoreLocation
 
+extension Date {
+    var ticks: Double {
+        return Double((self.timeIntervalSince1970 + 62_135_596_800) * 10_000_000)
+    }
+}
+
 class ViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
-    let restUrl = URL(string:"http://localhost:3000/locations.json")
+    let restUrl = URL(string:"http://r90gvdju.pentaho.com:8080/iot/Lumada")
     var priorLat = 0.0
     var priorLon = 0.0
     
@@ -50,14 +56,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             let currentLon =  location.coordinate.longitude
             
             if (currentLat != priorLat || currentLon != priorLon) { // Don't do anything if we haven't changed locations
-                let parameters = [
-                    "location" : [
-                        "lat" : currentLat,
-                        "lon" : currentLon
-                    ]
+                let parameters : Dictionary<String, Double> = [
+                    "latitude" : currentLat,
+                    "longitude" : currentLon,
+                    "time" : Date().ticks
                 ]
-                
+                print(parameters)
                 let jsonData  = try? JSONSerialization.data(withJSONObject: parameters, options:[])
+                print("JSON data object is:\(jsonData!)")
                 var request = URLRequest(url:restUrl!)
                 request.httpMethod = "POST"
                 request.httpBody = jsonData
@@ -66,12 +72,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 let session = URLSession.shared
                 session.dataTask(with: request) { data, rsp, err in
                     if let data = data {
-                        do {
-                            let json = try JSONSerialization.jsonObject(with: data, options: [])
-                            print(json)
-                        } catch {
-                            print(error)
-                        }
+                        print( data )
                     }
                     if let rsp = rsp {
                         print(rsp)
